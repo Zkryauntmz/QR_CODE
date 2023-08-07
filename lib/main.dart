@@ -52,50 +52,53 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/Images/Sisecam_Logo.png",
-          ),
-          const SizedBox(
-            height: 75,
-          ),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue[600],
-                  padding: const EdgeInsets.all(20.0),
-                  fixedSize: const Size(300, 60),
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  elevation: 15,
-                  shadowColor: Colors.black,
-                  side: const BorderSide(color: Colors.black, width: 2)),
-              onPressed: () {
-                scanQRCode();
-
-                // print(getResult);
-              },
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Text(
-                      'SCAN QR',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+          child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Image.asset(
+              "assets/Images/Sisecam_Logo.png",
+            ),
+            const SizedBox(
+              height: 75,
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue[600],
+                    padding: const EdgeInsets.all(20.0),
+                    fixedSize: const Size(300, 60),
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ),
-                  Icon(Icons.qr_code)
-                ],
-              )),
-          const SizedBox(
-            height: 50.0,
-          ),
-          //Text(getResult),
-        ],
+                    elevation: 15,
+                    shadowColor: Colors.black,
+                    side: const BorderSide(color: Colors.black, width: 2)),
+                onPressed: () {
+                  scanQRCode();
+
+                  // print(getResult);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Text(
+                        'SCAN QR',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Icon(Icons.qr_code)
+                  ],
+                )),
+            const SizedBox(
+              height: 50.0,
+            ),
+            //Text(getResult),
+          ],
+        ),
       )),
     );
   }
@@ -109,13 +112,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
       setState(() {
         getResult = qrCode;
-        if (getResult == "") {
+        if (getResult.isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("                   LÜTFEN QR KODU OKUTUNUZ ..."),
             ),
           );
-          //print('Değer Bos');
+          print('Değer Bos');
         } else {
           Navigator.push(
             context,
